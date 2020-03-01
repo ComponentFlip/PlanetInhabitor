@@ -19,7 +19,7 @@ public class PlanetView extends Canvas {
 		image = new BufferedImage(planet.width, planet.height, BufferedImage.TYPE_INT_RGB);
 		screenBuffer = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
-		setPreferredSize(new Dimension(planet.width * TILE_SIZE, planet.height* TILE_SIZE));
+		setPreferredSize(new Dimension(planet.width * TILE_SIZE, planet.height * TILE_SIZE));
 	}
 
 	@Override
@@ -27,12 +27,12 @@ public class PlanetView extends Canvas {
 		for (int y = 0; y < planet.width; y++) {
 			for (int x = 0; x < planet.height; x++) {
 				// Set the pixel to the current tile's colour
-				screenBuffer[x+y*planet.width] = planet.getTileColour(x, y);
+				screenBuffer[x + y * planet.width] = planet.getTileColour(x, y);
 			}
 		}
 
 		// Draw the image
-		g.drawImage(image, 0, 0, planet.width * TILE_SIZE, planet.height* TILE_SIZE, null);
+		g.drawImage(image, 0, 0, planet.width * TILE_SIZE, planet.height * TILE_SIZE, null);
 		g.dispose();
 	}
 }
