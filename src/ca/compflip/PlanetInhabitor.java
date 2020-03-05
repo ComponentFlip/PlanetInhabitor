@@ -24,16 +24,16 @@ public class PlanetInhabitor {
 	}
 
 	private void update(int time) {
-		// Generate a new level and redraw every 500 ms
+		// Update the level and redraw every 300 ms
 		time++;
 
-		planet.generate(time);
+		planet.update();
 		planetView.repaint();
 
 		frame.setTitle("PlanetInhabitor [time: " + time + "]");
 
 		try {
-			Thread.sleep(500);
+			Thread.sleep(300);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
