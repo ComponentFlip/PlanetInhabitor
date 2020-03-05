@@ -28,7 +28,7 @@ public class Planet {
 		for (int y = 0; y < width; y++) {
 			for (int x = 0; x < height; x++) {
 				// For every tile, if they have a behaviour then run its code.
-				TileBehaviour behaviour = getTileBehavior(x, y);
+				TileBehaviour behaviour = getTile(x, y).type.behaviour;
 				if (behaviour != null) {
 					behaviour.updateTile(this, x, y);
 				}
@@ -36,12 +36,10 @@ public class Planet {
 		}
 	}
 
-	TileBehaviour getTileBehavior(int x, int y) {
-		return tiles[x + y * width].type.behaviour;
-	}
-
-	TileType getTileType(int x, int y) {
-		return tiles[x + y * width].type;
+	Tile getTile(int x, int y) {
+		if (x >= 0 && x < width && y >= 0 && y < height) // Check if within bounds
+			return tiles[x + y * width];
+		return null;
 	}
 
 	void setTileType(TileType type, int x, int y) {
@@ -51,6 +49,6 @@ public class Planet {
 
 	// Return the colour at a specific location
 	int getTileColour(int x, int y) {
-		return (tiles[x + y * width].type.colour & 0x444444) * tiles[x + y * width].height;
+		return (getTile(x, y).type.colour & 0x444444) * getTile(x, y).height;
 	}
 }

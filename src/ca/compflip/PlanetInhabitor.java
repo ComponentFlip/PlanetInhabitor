@@ -1,6 +1,6 @@
 package ca.compflip;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public class PlanetInhabitor {
 	private JFrame frame;
@@ -9,8 +9,8 @@ public class PlanetInhabitor {
 
 	private void init() {
 		frame = new JFrame("PlanetInhabitor");
-		planet = new Planet(32, 32);
-		planet.generate(0);
+		planet = new Planet(64, 64);
+		planet.generate((int) (Math.random() * Integer.MAX_VALUE)); // Generate with random seed
 		planetView = new PlanetView(planet);
 
 		frame.add(planetView);
