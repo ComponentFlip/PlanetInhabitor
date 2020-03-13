@@ -1,6 +1,6 @@
 package ca.compflip;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class PlanetInhabitor {
 	private JFrame frame;
@@ -13,7 +13,11 @@ public class PlanetInhabitor {
 		planet.generate((int) (Math.random() * Integer.MAX_VALUE)); // Generate with random seed
 		planetView = new PlanetView(planet);
 
-		frame.add(planetView);
+		JPanel graphicsPanel = new JPanel();
+		frame.add(graphicsPanel);
+
+		planetView.addToPanel(graphicsPanel);
+
 		frame.pack();
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null); // Centers the window on startup
@@ -28,7 +32,7 @@ public class PlanetInhabitor {
 		time++;
 
 		planet.update();
-		planetView.repaint();
+		planetView.update();
 
 		frame.setTitle("PlanetInhabitor [time: " + time + "]");
 
