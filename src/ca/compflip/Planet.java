@@ -1,5 +1,7 @@
 package ca.compflip;
 
+import ca.compflip.behaviours.TileBehaviour;
+
 import java.util.Random;
 
 public class Planet {
@@ -13,7 +15,7 @@ public class Planet {
 		tiles = new Tile[width * height];
 	}
 
-	void generate(int seed) {
+	public void generate(int seed) {
 		Random random = new Random(seed);
 		for (int i = 0; i < tiles.length; i++) {
 			// Give each tile a random type and height
@@ -24,7 +26,7 @@ public class Planet {
 		}
 	}
 
-	void update() {
+	public void update() {
 		for (int y = 0; y < width; y++) {
 			for (int x = 0; x < height; x++) {
 				// For every tile, if they have a behaviour then run its code.
@@ -36,13 +38,13 @@ public class Planet {
 		}
 	}
 
-	Tile getTile(int x, int y) {
+	public Tile getTile(int x, int y) {
 		if (x >= 0 && x < width && y >= 0 && y < height) // Check if within bounds
 			return tiles[x + y * width];
 		return null;
 	}
 
-	void setTileType(TileType type, int x, int y) {
+	public void setTileType(TileType type, int x, int y) {
 		if (x >= 0 && x < width && y >= 0 && y < height) // Check if within bounds
 			tiles[x + y * width].type = type;
 	}

@@ -1,5 +1,8 @@
 package ca.compflip;
 
+import ca.compflip.behaviours.TileBehaviour;
+import ca.compflip.behaviours.WaterSpreadBehaviour;
+
 public enum TileType {
 	GROUND(0x00ff00),
 	WATER(0x0000ff, new WaterSpreadBehaviour());
@@ -12,19 +15,9 @@ public enum TileType {
 		this.behaviour = null;
 
 	}
+
 	TileType(int colour, TileBehaviour behaviour) {
 		this.colour = colour;
 		this.behaviour = behaviour;
-	}
-
-	// TILE BEHAVIOURS
-
-	static class WaterSpreadBehaviour implements TileBehaviour {
-		@Override
-		public void updateTile(Planet planet, int x, int y) {
-			if (Math.random() < 0.2) {
-				planet.setTileType(TileType.WATER, x, y + 1);
-			}
-		}
 	}
 }
