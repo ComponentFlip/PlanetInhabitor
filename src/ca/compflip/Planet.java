@@ -8,6 +8,9 @@ public class Planet {
 	public int width, height;
 	public Tile[] tiles;
 
+	// Default tile to return when trying to get a tile that is out of bounds
+	public final Tile defaultTile = new Tile(TileType.GROUND, 0);
+
 	public Planet(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -20,7 +23,7 @@ public class Planet {
 		for (int i = 0; i < tiles.length; i++) {
 			// Give each tile a random type and height
 			tiles[i] = new Tile(
-					random.nextBoolean() ? TileType.GROUND : TileType.WATER,
+					random.nextInt(5) == 1 ? TileType.WATER : TileType.GROUND,
 					random.nextInt(12)
 			);
 		}
@@ -41,7 +44,7 @@ public class Planet {
 	public Tile getTile(int x, int y) {
 		if (x >= 0 && x < width && y >= 0 && y < height) // Check if within bounds
 			return tiles[x + y * width];
-		return null;
+		return defaultTile;
 	}
 
 	public void setTileType(TileType type, int x, int y) {

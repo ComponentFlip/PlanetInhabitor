@@ -9,7 +9,7 @@ public class PlanetInhabitor {
 
 	private void init() {
 		frame = new JFrame("PlanetInhabitor");
-		planet = new Planet(64, 64);
+		planet = new Planet(256, 256);
 		planet.generate((int) (Math.random() * Integer.MAX_VALUE)); // Generate with random seed
 		planetView = new PlanetView(planet);
 
@@ -28,21 +28,19 @@ public class PlanetInhabitor {
 	}
 
 	private void update(int time) {
-		// Update the level and redraw every 300 ms
-		time++;
-
+		// Update the level and redraw
 		planet.update();
 		planetView.update();
 
 		frame.setTitle("PlanetInhabitor [time: " + time + "]");
 
 		try {
-			Thread.sleep(300);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-		update(time);
+		update(time + 1);
 	}
 
 	public static void main(String[] args) {
